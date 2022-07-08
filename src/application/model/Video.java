@@ -4,14 +4,14 @@ public class Video {
     private String title;
     private String director;
     private int rate;
-    private int lenght;
 
 
-    public Video(String title, String director, int rate, int lenght) {
+
+    public Video(String title, String director, int rate) {
         this.title = title;
         this.director = director;
         this.rate = rate;
-        this.lenght = lenght;
+
     }
 
     @Override
@@ -20,7 +20,7 @@ public class Video {
                 "title='" + title + '\'' +
                 ", director='" + director + '\'' +
                 ", rate=" + rate +
-                ", lenght=" + lenght +
+
                 '}';
     }
 
@@ -48,11 +48,5 @@ public class Video {
         this.rate = rate;
     }
 
-    public int getLenght() {
-        return lenght;
-    }
 
-    public void setLenght(int lenght) {
-        this.lenght = lenght;
-    }
 }
