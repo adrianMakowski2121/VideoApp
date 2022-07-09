@@ -1,13 +1,13 @@
 package application.model;
 
-public class Video {
+public class Film {
     private String title;
     private String director;
     private int rate;
 
 
 
-    public Video(String title, String director, int rate) {
+    public Film(String title, String director, int rate) {
         this.title = title;
         this.director = director;
         this.rate = rate;
