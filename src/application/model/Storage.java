@@ -14,14 +14,12 @@ public class Storage {
         } else {
             System.out.println("za malo miejsca");
         }
-
     }
 
     public void printList() {
         for (int i = 0; i < actualNumberOfVideo; i++) {
             System.out.println(listOfFilm[i]);
         }
-
     }
 
 }

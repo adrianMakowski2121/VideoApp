@@ -11,7 +11,6 @@ public class Film {
         this.title = title;
         this.director = director;
         this.rate = rate;
-
     }
 
     @Override
@@ -19,9 +18,7 @@ public class Film {
         return "Video{" +
                 "title='" + title + '\'' +
                 ", director='" + director + '\'' +
-                ", rate=" + rate +
-
-                '}';
+                ", rate=" + rate + '}';
     }
 
     public String getTitle() {

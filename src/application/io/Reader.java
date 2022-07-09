@@ -16,7 +16,6 @@ public class Reader {
         int rate = getNumber();
 
         return new Film(title, director, rate);
-
     }
 
     public int getNumber() {

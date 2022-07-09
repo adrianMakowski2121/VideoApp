@@ -59,6 +59,4 @@ public class VideoControl {
         Film film = reader.addVideo();
         storage.addVideo(film);
     }
-
-
 }
