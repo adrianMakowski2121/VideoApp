@@ -2,6 +2,7 @@ package application.app;
 
 import application.io.Reader;
 import application.model.Film;
+import application.model.Serial;
 import application.model.Storage;
 
 public class VideoControl {
@@ -29,13 +30,13 @@ public class VideoControl {
                     addVideo();
                     break;
                 case ADD_SERIAL:
-                    System.out.println("tej opcji jeszcze nie ma");
+                    addSerial();
                     break;
                 case PRINT_SERIAL:
-                    System.out.println("tej opcji jeszcze nie ma.");
+                    storage.printSerials();
                     break;
                 case PRINT_FILM:
-                    storage.printList();
+                    storage.printFilms();
                     break;
                 default:
                     System.out.println("podales złą wartość");
@@ -43,6 +44,11 @@ public class VideoControl {
             }
         } while (option != EXIT);
 
+    }
+
+    private void addSerial() {
+        Serial serial = reader.addSerial();
+        storage.addSerial(serial);
     }
 
     public void printOptions() {
@@ -57,6 +63,6 @@ public class VideoControl {
 
     private void addVideo() {
         Film film = reader.addVideo();
-        storage.addVideo(film);
+        storage.addFilm(film);
     }
 }
