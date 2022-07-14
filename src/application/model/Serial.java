@@ -18,6 +18,6 @@ public class Serial extends Video{
 
     @Override
     public String toString() {
-        return super.toString() + " " +  ",sezony "+seasons + "}";
+        return "Serial " + super.toString() + " " +  ",sezony "+seasons + "}";
     }
 }

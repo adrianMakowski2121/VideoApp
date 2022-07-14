@@ -18,6 +18,6 @@ public class Film extends Video{
 
     @Override
     public String toString() {
-        return super.toString() + " " + "relaseDate: " + relaseDate + "}";
+        return "Film " + super.toString() + " " + "relaseDate: " + relaseDate + "}";
     }
 }
