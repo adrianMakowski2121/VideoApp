@@ -6,7 +6,12 @@ import application.model.Serial;
 import java.util.Scanner;
 
 public class Reader {
+    private ConsolePrinter consolePrinter;
     private Scanner scanner = new Scanner(System.in);
+
+    public Reader(ConsolePrinter consolePrinter) {
+        this.consolePrinter = consolePrinter;
+    }
 
     public Film addVideo() {
         System.out.println("Podaj tytuł: ");
@@ -35,12 +40,12 @@ public class Reader {
         return new Serial(title, director, rate, seasons);
     }
 
-
-
     public int getNumber() {
-        int i = scanner.nextInt();
-        scanner.nextLine();
-        return i;
+        try {
+            return scanner.nextInt();
+        } finally {
+            scanner.nextLine();
+        }
     }
 
     public void closeScanner() {

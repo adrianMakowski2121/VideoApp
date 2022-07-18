@@ -1,9 +1,13 @@
 package application.app;
 
+import application.exceptions.NoSuchOptionException;
+import application.io.ConsolePrinter;
 import application.io.Reader;
 import application.model.Film;
 import application.model.Serial;
 import application.model.Storage;
+
+import java.util.InputMismatchException;
 
 public class VideoControl {
     private final static int EXIT = 0;
@@ -13,18 +17,21 @@ public class VideoControl {
     private final static int PRINT_FILM = 4;
     private final static int PRINT_ALL_LISTS = 5;
 
-    Reader reader = new Reader();
-    Storage storage = new Storage();
+    private ConsolePrinter consolePrinter = new ConsolePrinter();
+    private Reader reader = new Reader(consolePrinter);
+    private Storage storage = new Storage();
 
     public void controlLoop() {
-        int option;
+        Option option;
 
         do {
             printOptions();
-             option = reader.getNumber();
+
+            option = getOption();
+
             switch (option) {
                 case EXIT:
-                    System.out.println("do zobaczenia innym razem");
+                    consolePrinter.printLine("do zobaczenia innym razem");
                     break;
                 case ADD_VIDEO:
                     addVideo();
@@ -33,24 +40,57 @@ public class VideoControl {
                     addSerial();
                     break;
                 case PRINT_SERIAL:
-                    storage.printSerials();
+                    printSerials();
                     break;
                 case PRINT_FILM:
-                    storage.printFilms();
+                    printFilms();
                     break;
                 case PRINT_ALL_LISTS:
                     printAllLists();
                     break;
                 default:
-                    System.out.println("podales złą wartość");
+                    consolePrinter.printLine("podales złą wartość");
                     break;
             }
-        } while (option != EXIT);
+        } while (option != Option.EXIT);
+    }
+
+    private void printOptions() {
+        consolePrinter.printLine("Wybierz opcję: ");
+
+        for (Option option : Option.values()) {
+            consolePrinter.printLine(option.toString());
+        }
+    }
+
+    private void printFilms() {
+        consolePrinter.printFilms(storage.getFilms());
+    }
+
+    private void printSerials() {
+        consolePrinter.printSerials(storage.getSerials());
+    }
+
+    private Option getOption() {
+        boolean optionIsOk = false;
+        Option option1 = null;
+
+        while (!optionIsOk) {
+            try {
+                option1 = Option.createInt(reader.getNumber());
+                optionIsOk = true;
+            } catch (NoSuchOptionException e) {
+                consolePrinter.printLine(e.getMessage());
+            } catch (InputMismatchException e) {
+                consolePrinter.printLine("nie mozesz wprowadzac liczb, podaj liczbę ponownie: ");
+            }
+        }
+        return option1;
     }
 
     public void printAllLists() {
-        storage.printSerials();
-        storage.printFilms();
+        printFilms();
+        printSerials();
     }
 
     private void addSerial() {
@@ -58,18 +98,7 @@ public class VideoControl {
         storage.addSerial(serial);
     }
 
-    public void printOptions() {
-        System.out.println(" ");
-        System.out.println("wybierz jedną z opcji");
-        System.out.println(EXIT + " -> wyjscie z programu");
-        System.out.println(ADD_VIDEO + " -> dodaj film");
-        System.out.println(ADD_SERIAL + " -> dodaj serial");
-        System.out.println(PRINT_SERIAL + " -> wyswietl wszystkie seriale");
-        System.out.println(PRINT_FILM + " -> wyswietl wszystkie filmy");
-        System.out.println(PRINT_ALL_LISTS + " -> wyświetl seriale i filmy");
-    }
-
-    private void addVideo() {
+        private void addVideo() {
         Film film = reader.addVideo();
         storage.addFilm(film);
     }

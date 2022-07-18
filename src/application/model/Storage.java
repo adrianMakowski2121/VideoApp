@@ -16,15 +16,11 @@ public class Storage {
         films.add(film);
     }
 
-    public void printSerials() {
-        for (Serial serial : serials) {
-            System.out.println(serial);
-        }
+    public List<Film> getFilms() {
+        return films;
     }
 
-    public void printFilms() {
-        for (Film film : films) {
-            System.out.println(film);
-        }
+    public List<Serial> getSerials() {
+        return serials;
     }
 }
