@@ -94,12 +94,21 @@ public class VideoControl {
     }
 
     private void addSerial() {
-        Serial serial = reader.addSerial();
-        storage.addSerial(serial);
+        try {
+            Serial serial = reader.addSerial();
+            storage.addSerial(serial);
+        } catch (InputMismatchException e ) {
+            consolePrinter.printLine("nie udało się dodać i utworzyć serialu: ");
+        }
     }
 
         private void addVideo() {
+        try {
         Film film = reader.addVideo();
         storage.addFilm(film);
+        } catch (InputMismatchException e) {
+            consolePrinter.printLine("nie udało się dodać i utworzyć filmu: ");
+        }
+
     }
 }

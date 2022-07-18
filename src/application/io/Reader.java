@@ -14,26 +14,26 @@ public class Reader {
     }
 
     public Film addVideo() {
-        System.out.println("Podaj tytuł: ");
+        consolePrinter.printLine("Podaj tytuł: ");
         String title = scanner.nextLine();
-        System.out.println("Podaj reżysera: ");
+        consolePrinter.printLine("Podaj reżysera: ");
         String director = scanner.nextLine();
-        System.out.println("Podaj ocenę ocenę filmu: ");
+        consolePrinter.printLine("Podaj ocenę filmu: ");
         int rate = getNumber();
-        System.out.println("Podaj datę wydania");
+        consolePrinter.printLine("Podaj datę wydania: ");
         String relaseDate = scanner.nextLine();
 
         return new Film(title, director, rate, relaseDate);
     }
 
     public Serial addSerial() {
-        System.out.println("Podaj tytuł: ");
+        consolePrinter.printLine("Podaj tytuł: ");
         String title = scanner.nextLine();
-        System.out.println("Podaj reżysera: ");
+        consolePrinter.printLine("Podaj reżysera: ");
         String director = scanner.nextLine();
-        System.out.println("Podaj ocenę ocenę serialu: ");
+        consolePrinter.printLine("Podaj ocenę serialu: ");
         int rate = getNumber();
-        System.out.println("Podaj liczbę sezonów");
+        consolePrinter.printLine("Podaj liczbę sezonów: ");
         int seasons = scanner.nextInt();
         scanner.nextLine();
 
