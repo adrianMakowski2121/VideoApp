@@ -1,6 +1,6 @@
 package application.model;
 
-public class Video {
+public abstract class Video {
 
     private String title;
     private String director;
