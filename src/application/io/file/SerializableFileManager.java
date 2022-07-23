@@ -7,7 +7,7 @@ import application.model.Storage;
 import java.io.*;
 
 public class SerializableFileManager implements FileManager {
-    private static final String FILE_NAME = "Library.txt";
+    private static final String FILE_NAME = "Library.o";
 
     @Override
     public Storage importData() {

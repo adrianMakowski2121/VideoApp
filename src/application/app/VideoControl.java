@@ -1,8 +1,12 @@
 package application.app;
 
+import application.exceptions.DataExportException;
+import application.exceptions.DataImportException;
 import application.exceptions.NoSuchOptionException;
 import application.io.ConsolePrinter;
 import application.io.Reader;
+import application.io.file.FileManager;
+import application.io.file.FileManagerBuilder;
 import application.model.Film;
 import application.model.Serial;
 import application.model.Storage;
@@ -19,7 +23,20 @@ public class VideoControl {
 
     private ConsolePrinter consolePrinter = new ConsolePrinter();
     private Reader reader = new Reader(consolePrinter);
-    private Storage storage = new Storage();
+    private Storage storage;
+    private FileManager fileManager;
+
+    public VideoControl() {
+        fileManager = new FileManagerBuilder(reader, consolePrinter).build();
+        try {
+            storage = fileManager.importData();
+            consolePrinter.printLine("Zainportowano dane z pliku");
+        } catch (DataImportException e) {
+            consolePrinter.printLine(e.getMessage());
+            consolePrinter.printLine("zaanicjowano nową baze danych ");
+            storage = new Storage();
+        }
+    }
 
     public void controlLoop() {
         Option option;
@@ -31,7 +48,7 @@ public class VideoControl {
 
             switch (option) {
                 case EXIT:
-                    consolePrinter.printLine("do zobaczenia innym razem");
+                    exit();
                     break;
                 case ADD_VIDEO:
                     addVideo();
@@ -53,6 +70,17 @@ public class VideoControl {
                     break;
             }
         } while (option != Option.EXIT);
+    }
+
+    private void exit() {
+        try {
+            fileManager.exportData(storage);
+            consolePrinter.printLine("Export danych do pliku zakończony powodzeniem");
+        } catch (DataExportException e) {
+            consolePrinter.printLine(e.getMessage());
+        }
+        consolePrinter.printLine("zakończenie programu, do zobaczenia");
+        reader.closeScanner();
     }
 
     private void printOptions() {
@@ -97,15 +125,15 @@ public class VideoControl {
         try {
             Serial serial = reader.addSerial();
             storage.addSerial(serial);
-        } catch (InputMismatchException e ) {
+        } catch (InputMismatchException e) {
             consolePrinter.printLine("nie udało się dodać i utworzyć serialu: ");
         }
     }
 
-        private void addVideo() {
+    private void addVideo() {
         try {
-        Film film = reader.addVideo();
-        storage.addFilm(film);
+            Film film = reader.addVideo();
+            storage.addFilm(film);
         } catch (InputMismatchException e) {
             consolePrinter.printLine("nie udało się dodać i utworzyć filmu: ");
         }
