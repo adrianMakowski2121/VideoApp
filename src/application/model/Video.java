@@ -1,6 +1,8 @@
 package application.model;
 
-public abstract class Video {
+import java.io.Serializable;
+
+public abstract class Video implements Serializable {
 
     private String title;
     private String director;
