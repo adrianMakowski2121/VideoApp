@@ -34,3 +34,6 @@ replay_pid*
 
 .idea/ 
 *.iml
+
+Library.o
+Library.txt
