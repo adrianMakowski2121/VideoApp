@@ -8,7 +8,6 @@ import java.util.List;
 public class Storage implements Serializable {
     List<Film> films = new ArrayList<>();
     List<Serial> serials = new ArrayList<>();
-
     public void addSerial(Serial serial) {
         serials.add(serial);
     }

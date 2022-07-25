@@ -3,7 +3,6 @@ package application.model;
 import java.io.Serializable;
 
 public abstract class Video implements Serializable {
-
     private String title;
     private String director;
     private int rate;
