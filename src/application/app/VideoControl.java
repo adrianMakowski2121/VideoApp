@@ -74,6 +74,8 @@ public class VideoControl {
         } while (option != Option.EXIT);
     }
 
+    // dodac funkcjo do tej metody
+
     private void logging() {
         Pass pass = reader.checkPass();
 
