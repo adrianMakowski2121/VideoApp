@@ -8,7 +8,10 @@ public enum Option {
     ADD_SERIAL(2, "dodaj serial"),
     PRINT_SERIAL(3, "wyswietl wszystkie seriale"),
     PRINT_FILM(4, "wyswietl wszystkie filmy"),
-    PRINT_ALL_LISTS(5, "wyświetl seriale i filmy");
+    PRINT_ALL_LISTS(5, "wyświetl seriale i filmy"),
+    ADD_NEW_USER(6, "Dodaj nowego użytkonika"),
+    LOGGING(7, "Zaloguj się"),
+    PRINT_ALL_USERS(8, "Wyświetl wszystkich użytkowników");
 
     private int value;
     private String desc;

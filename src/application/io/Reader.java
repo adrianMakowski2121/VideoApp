@@ -1,7 +1,9 @@
 package application.io;
 
 import application.model.Film;
+import application.model.Pass;
 import application.model.Serial;
+import application.model.User;
 
 import java.util.Scanner;
 
@@ -46,6 +48,29 @@ public class Reader {
         } finally {
             scanner.nextLine();
         }
+    }
+
+    public User addUser() {
+        consolePrinter.printLine("Podaj imie: ");
+        String firstName = scanner.nextLine();
+        consolePrinter.printLine("Podaj nazwisko: ");
+        String lastName = scanner.nextLine();
+        consolePrinter.printLine("Podaj wiek: ");
+        int age = scanner.nextInt();
+        scanner.nextLine();
+        consolePrinter.printLine("Podaj login: ");
+        String login = scanner.nextLine();
+        consolePrinter.printLine("Podaj haslo: ");
+        String password = scanner.nextLine();
+        return new User(firstName,lastName,age,login,password);
+    }
+
+    public Pass checkPass() {
+        consolePrinter.printLine("Podaj login: ");
+        String login = scanner.nextLine();
+        consolePrinter.printLine("Podaj haslo: ");
+        String password = scanner.nextLine();
+        return new Pass(login, password);
     }
 
     public String getString() {

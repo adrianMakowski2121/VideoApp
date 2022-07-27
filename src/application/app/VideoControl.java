@@ -7,24 +7,17 @@ import application.io.ConsolePrinter;
 import application.io.Reader;
 import application.io.file.FileManager;
 import application.io.file.FileManagerBuilder;
-import application.model.Film;
-import application.model.Serial;
-import application.model.Storage;
+import application.model.*;
 
 import java.util.InputMismatchException;
 
 public class VideoControl {
-    private final static int EXIT = 0;
-    private final static int ADD_VIDEO = 1;
-    private final static int ADD_SERIAL = 2;
-    private final static int PRINT_SERIAL = 3;
-    private final static int PRINT_FILM = 4;
-    private final static int PRINT_ALL_LISTS = 5;
 
     private ConsolePrinter consolePrinter = new ConsolePrinter();
     private Reader reader = new Reader(consolePrinter);
     private Storage storage;
     private FileManager fileManager;
+    private StorageUser storageUser = new StorageUser();
 
     public VideoControl() {
         fileManager = new FileManagerBuilder(reader, consolePrinter).build();
@@ -65,11 +58,35 @@ public class VideoControl {
                 case PRINT_ALL_LISTS:
                     printAllLists();
                     break;
+                case LOGGING:
+                    logging();
+                    break;
+                case ADD_NEW_USER:
+                    addNewUser();
+                    break;
+                case PRINT_ALL_USERS:
+                    printAllUsers();
+                    break;
                 default:
                     consolePrinter.printLine("podales złą wartość");
                     break;
             }
         } while (option != Option.EXIT);
+    }
+
+    private void logging() {
+        Pass pass = reader.checkPass();
+
+
+    }
+
+    private void printAllUsers() {
+        consolePrinter.printLine(storageUser.getUserList().toString());
+    }
+
+    private void addNewUser() {
+        storageUser.userAdd(reader.addUser());
+        consolePrinter.printLine("Dodano nowego użytkownika");
     }
 
     private void exit() {
