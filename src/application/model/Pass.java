@@ -24,11 +24,11 @@ public class Pass {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Pass pass = (Pass) o;
-        return Objects.equals(login, pass.login) && Objects.equals(password, pass.password);
+        return Objects.equals(login, pass.login);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(login, password);
+        return Objects.hash(login);
     }
 }

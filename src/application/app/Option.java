@@ -11,8 +11,9 @@ public enum Option {
     PRINT_ALL_LISTS(5, "wyświetl seriale i filmy"),
     ADD_NEW_USER(6, "Dodaj nowego użytkonika"),
     LOGGING(7, "Zaloguj się"),
-    PRINT_ALL_USERS(8, "Wyświetl wszystkich użytkowników");
-
+    PRINT_ALL_USERS(8, "Wyświetl wszystkich użytkowników"),
+    FIND_USER(9, "Znajdź użytkownika w bazie"),
+    TEST(10, "TESTOWE OPCJE");
     private int value;
     private String desc;
 

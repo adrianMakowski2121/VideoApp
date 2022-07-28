@@ -24,7 +24,7 @@ public class User implements Serializable  {
                 "firsName='" + firsName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", age=" + age +
-                '}';
+                '}' + " "+ login;
     }
 
     public String getFirsName() {
@@ -58,17 +58,5 @@ public class User implements Serializable  {
     public String getPassword() {
         return password;
     }
-    
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return age == user.age && Objects.equals(firsName, user.firsName) && Objects.equals(lastName, user.lastName) && Objects.equals(login, user.login) && Objects.equals(password, user.password);
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(firsName, lastName, age, login, password);
-    }
 }

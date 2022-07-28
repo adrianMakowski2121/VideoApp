@@ -2,6 +2,7 @@ package application.app;
 
 import application.exceptions.DataExportException;
 import application.exceptions.DataImportException;
+import application.exceptions.ListIsEmptyException;
 import application.exceptions.NoSuchOptionException;
 import application.io.ConsolePrinter;
 import application.io.Reader;
@@ -18,6 +19,7 @@ public class VideoControl {
     private Storage storage;
     private FileManager fileManager;
     private StorageUser storageUser = new StorageUser();
+    private LoginSystem loginSystem = new LoginSystem(storageUser, consolePrinter);
 
     public VideoControl() {
         fileManager = new FileManagerBuilder(reader, consolePrinter).build();
@@ -59,13 +61,20 @@ public class VideoControl {
                     printAllLists();
                     break;
                 case LOGGING:
-                    logging();
+                    betterLogging();
                     break;
                 case ADD_NEW_USER:
                     addNewUser();
                     break;
                 case PRINT_ALL_USERS:
                     printAllUsers();
+                    break;
+                case TEST:
+                    consolePrinter.printLine("podaj login");
+                    betterLogging();
+                    break;
+                case FIND_USER:
+                    findUserInBase();
                     break;
                 default:
                     consolePrinter.printLine("podales złą wartość");
@@ -74,11 +83,30 @@ public class VideoControl {
         } while (option != Option.EXIT);
     }
 
-    // dodac funkcjo do tej metody
+    private void betterLogging() {
+        try {
+            storageUser.isListEmpty();
+            Pass pass = reader.checkPass();
+            loginSystem.betterAlgorit(pass);
 
-    private void logging() {
-        Pass pass = reader.checkPass();
 
+        } catch (ListIsEmptyException e) {
+            consolePrinter.printLine("Nie możesz się zalogować, ponieważ nie dodałeś użytkownika");
+        }
+    }
+
+    public void findUserInBase() {
+       try {
+           if (storageUser.isListEmpty()) {
+               consolePrinter.printLine("lista jest pusta");
+           } else {
+               consolePrinter.printLine("wpisz login użytkownika, którego szukasz");
+               String login = reader.getString();
+               System.out.println(storageUser.findUserBetter(login));
+           }
+       } catch (ListIsEmptyException e) {
+           consolePrinter.printLine(e.getMessage());
+       }
 
     }
 
