@@ -3,7 +3,7 @@ package application.model;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class User implements Serializable  {
+public class User implements Serializable {
     private String firsName;
     private String lastName;
     private int age;
@@ -23,8 +23,7 @@ public class User implements Serializable  {
         return "User = " +
                 "firsName='" + firsName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", age=" + age +
-                '}' + " "+ login;
+                ", age=" + age + " " + login;
     }
 
     public String getFirsName() {

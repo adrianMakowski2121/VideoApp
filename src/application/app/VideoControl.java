@@ -61,7 +61,7 @@ public class VideoControl {
                     printAllLists();
                     break;
                 case LOGGING:
-                    betterLogging();
+                    loginAlg();
                     break;
                 case ADD_NEW_USER:
                     addNewUser();
@@ -71,7 +71,7 @@ public class VideoControl {
                     break;
                 case TEST:
                     consolePrinter.printLine("podaj login");
-                    betterLogging();
+                    loginAlg();
                     break;
                 case FIND_USER:
                     findUserInBase();
@@ -83,7 +83,7 @@ public class VideoControl {
         } while (option != Option.EXIT);
     }
 
-    private void betterLogging() {
+    private void loginAlg() {
         try {
             storageUser.isListEmpty();
             Pass pass = reader.checkPass();
@@ -96,17 +96,17 @@ public class VideoControl {
     }
 
     public void findUserInBase() {
-       try {
-           if (storageUser.isListEmpty()) {
-               consolePrinter.printLine("lista jest pusta");
-           } else {
-               consolePrinter.printLine("wpisz login użytkownika, którego szukasz");
-               String login = reader.getString();
-               System.out.println(storageUser.findUserBetter(login));
-           }
-       } catch (ListIsEmptyException e) {
-           consolePrinter.printLine(e.getMessage());
-       }
+        try {
+            if (storageUser.isListEmpty()) {
+                consolePrinter.printLine("lista jest pusta");
+            } else {
+                consolePrinter.printLine("wpisz login użytkownika, którego szukasz");
+                String login = reader.getString();
+                System.out.println(storageUser.findUserBetter(login));
+            }
+        } catch (ListIsEmptyException e) {
+            consolePrinter.printLine(e.getMessage());
+        }
 
     }
 
@@ -184,6 +184,5 @@ public class VideoControl {
         } catch (InputMismatchException e) {
             consolePrinter.printLine("nie udało się dodać i utworzyć filmu: ");
         }
-
     }
 }
