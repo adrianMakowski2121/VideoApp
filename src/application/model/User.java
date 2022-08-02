@@ -20,10 +20,11 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "User = " +
-                "firsName='" + firsName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", age=" + age + " " + login;
+        return "User -> " +
+                "Imię= " + firsName +
+                " Nazwisko= " + lastName +
+                " Wiek= " + age +
+                " Login= " + login + "///";
     }
 
     public String getFirsName() {
@@ -58,4 +59,7 @@ public class User implements Serializable {
         return password;
     }
 
+
 }
+
+//User -> first

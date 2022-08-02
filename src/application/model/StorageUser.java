@@ -1,10 +1,13 @@
 package application.model;
 
 import application.exceptions.ListIsEmptyException;
+import application.exceptions.NoSuchOptionException;
+import application.exceptions.NoSuchUserException;
 
 import java.util.ArrayList;
 
 import java.util.List;
+import java.util.Optional;
 
 public class StorageUser {
     List<User> userList = new ArrayList<>();
@@ -17,7 +20,6 @@ public class StorageUser {
         return userList;
     }
 
-    // ta klasa do poprawy -> nie moze byc zwrocony null
     public User getAllUsers() {
         for (User user : userList) {
             return user;
@@ -35,8 +37,10 @@ public class StorageUser {
 
     public User findUserBetter(String login) {
         for (User user : userList) {
-            if(login.equals(user.getLogin())) {
+            if (login.equals(user.getLogin())) {
                 return user;
+            } else {
+                throw new NoSuchUserException("Nie ma takiego użytkownika");
             }
         }
         return null;

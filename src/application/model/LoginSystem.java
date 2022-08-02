@@ -1,6 +1,10 @@
 package application.model;
 
+import application.exceptions.BadLoginOrPasswordException;
+import application.exceptions.NoSuchUserException;
 import application.io.ConsolePrinter;
+
+import java.util.Optional;
 
 public class LoginSystem {
 
@@ -13,10 +17,14 @@ public class LoginSystem {
     }
 
     public void betterAlgorit(Pass pass) {
-        User user = storageUser.findUserBetter(pass.getLogin());
+        User user;
 
-       if (user.getLogin().equals(pass.getLogin()) ) {
-           System.out.println("zalogowano " + user.getFirsName());
+        user = storageUser.findUserBetter(pass.getLogin());
+        if (user.getLogin().equals(pass.getLogin()) && user.getPassword().equals(pass.getPassword())) {
+            consolePrinter.printLine("zalogowano" + " " + user.getLogin());
+        } else {
+            System.out.println("Zły login lub hasło");
         }
     }
 }
+

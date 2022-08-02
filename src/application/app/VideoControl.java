@@ -1,9 +1,6 @@
 package application.app;
 
-import application.exceptions.DataExportException;
-import application.exceptions.DataImportException;
-import application.exceptions.ListIsEmptyException;
-import application.exceptions.NoSuchOptionException;
+import application.exceptions.*;
 import application.io.ConsolePrinter;
 import application.io.Reader;
 import application.io.file.FileManager;
@@ -104,10 +101,9 @@ public class VideoControl {
                 String login = reader.getString();
                 System.out.println(storageUser.findUserBetter(login));
             }
-        } catch (ListIsEmptyException e) {
+        } catch (ListIsEmptyException | NoSuchUserException e) {
             consolePrinter.printLine(e.getMessage());
         }
-
     }
 
     private void printAllUsers() {

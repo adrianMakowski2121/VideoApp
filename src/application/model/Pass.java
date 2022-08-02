@@ -19,16 +19,4 @@ public class Pass {
         return password;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Pass pass = (Pass) o;
-        return Objects.equals(login, pass.login);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(login);
-    }
 }
