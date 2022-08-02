@@ -15,7 +15,6 @@ public class SerializableFileManager implements FileManager {
         try (FileInputStream fis = new FileInputStream(FILE_NAME);
              ObjectInputStream ois = new ObjectInputStream(fis);
         ) {
-
             return (Storage) ois.readObject();
         } catch (FileNotFoundException e) {
             throw new DataImportException("nie znaleziono pliku " + FILE_NAME);
